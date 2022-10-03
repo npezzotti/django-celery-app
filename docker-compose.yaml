@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    ports:
+      - 8080:80
+    volumes:
+      - web-static:/var/www/django-celery-app
+      - uwsgi-sock:/tmp/uwsgi
+    depends_on:
+      - django
+  django:
+    container_name: django
+    build: ./django-celery-app
+    command: ./entrypoint.sh uwsgi --ini django-celery-app.ini
+    volumes:
+      - web-static:/app/staticfiles
+      - uwsgi-sock:/tmp/uwsgi
+    env_file:
+      - ./.django.env
+    depends_on:
+      - db
+      - redis
+  celery_worker:
+    container_name: celery-worker
+    build: ./django-celery-app
+    command: python -m celery -A django_celery_app worker
+    env_file:
+      - ./.django.env
+    depends_on:
+      - django
+  redis:
+    container_name: redis
+    image: redis:latest
+    volumes:
+      - redis-data:/data
+  db:
+    container_name: db
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=django-celery-db
+volumes:
+  postgres-data:
+  redis-data:
+  web-static:
+  uwsgi-sock:

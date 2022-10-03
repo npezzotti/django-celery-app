@@ -1,0 +1,82 @@
+body {
+    margin: 0;  
+    padding: 0;  
+    font-family: 'Arial';
+    background-image: linear-gradient(to right, rgb(126, 255, 126), white);
+    color: rgb(0, 115, 13);
+}
+
+h1 {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: inline-block;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.account-form {
+    display: inline-block;
+    background-color: white;
+    width: 28em;
+    padding: 2em;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    border-radius: 1em;
+}
+
+.account-form > h2 {
+    text-align: center;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: .8em;
+    font-size: 1em;
+    display: inline-block;
+    border: 1px solid rgb(188, 188, 188);
+    border-radius: .3em;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: rgb(0, 136, 16);
+    color: white;
+    padding: 1em 2em;
+    border: none;
+    border-radius: .3em;
+    cursor: pointer;
+}
+  
+input[type=submit]:hover {
+    background-color: rgb(0, 115, 13);
+}
+
+a:link {
+    color: inherit;
+}
+  
+a:hover {
+    text-decoration: underline;
+}
+
+.message {
+    background-color: rgb(126, 255, 126);
+    padding: .6em;
+    border-radius: .2em;
+    border-left: .3em solid rgb(0, 92, 11);
+    margin-bottom: .1em;
+}
+
+.errorlist {
+    color: rgb(255, 121, 121);
+    list-style-type: none;
+}
