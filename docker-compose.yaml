@@ -9,8 +9,6 @@ services:
     volumes:
       - web-static:/var/www/django-celery-app
       - uwsgi-sock:/tmp/uwsgi
-    depends_on:
-      - django
   django:
     container_name: django
     build: ./django-celery-app
@@ -23,6 +21,7 @@ services:
     depends_on:
       - db
       - redis
+      - nginx
   celery_worker:
     container_name: celery-worker
     build: ./django-celery-app

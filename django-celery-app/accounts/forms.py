@@ -15,7 +15,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ("username","email", "password1", "password2")
         help_texts = {
-            "username":None,
+            "username": None,
         }
 
     def send_email(self):
